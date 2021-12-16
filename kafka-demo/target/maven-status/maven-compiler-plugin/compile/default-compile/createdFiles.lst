@@ -1,1 +1,2 @@
-com/datainsight/app/App.class
+com/datainsight/app/Producer.class
+com/datainsight/app/ProducerCallback.class

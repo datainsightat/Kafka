@@ -3,19 +3,27 @@ package com.datainsight.app;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.RecordMetadata;
+// import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
+
+import javax.security.auth.callback.Callback;
 
 /**
  * Hello world!
  *
  */
-public class App 
+public class ProducerCallback
 {
     public static void main( String[] args )
     {
         //System.out.println( "Hello World!" );
+
+        Logger logger = LoggerFactory.getLogger(ProducerCallback.class);
 
         String bootstrapServers = "0.0.0.0:9092";
 
@@ -33,8 +41,27 @@ public class App
         //Create Producer Record
         ProducerRecord<String,String> record = new ProducerRecord<String,String>("first_topic","hello world");
 
+        System.out.println("Hello");
+        System.out.println(record);
+
         //Send Data - Asynchonous
-        producer.send(record);
+        producer.send(record, new Callback() {
+        //String a = new Callback() {
+            public void onCompletion(RecordMetadata recordMetadata, Exception e) {
+                //execute every time a record is successfully sent
+                if (e == null) {
+                    //the ecord was successfully sent
+                    logger.info("\nReceived new metadata." + 
+                                "\nTopic: " + recordMetadata.topic() + 
+                                "\nPartition: " + recordMetadata.partition() + 
+                                "\nOffset: " + recordMetadata.offset() + 
+                                "\nTimestamp: " + recordMetadata.timestamp());
+                } else {
+                    logger.error("\nError while producing: ", e);
+                }
+            }
+        });
+
         producer.flush();
         producer.close();
     }
