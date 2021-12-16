@@ -41,8 +41,8 @@ public class ProducerCallback
         //Create Producer Record
         ProducerRecord<String,String> record = new ProducerRecord<String,String>("first_topic","hello world");
 
-        System.out.println("Hello");
-        System.out.println(record);
+        // System.out.println("Hello");
+        // System.out.println(record);
 
         //Send Data - Asynchonous
         producer.send(record, new Callback() {
