@@ -33,7 +33,9 @@ public class App
         //Create Producer Record
         ProducerRecord<String,String> record = new ProducerRecord<String,String>("first_topic","hello world");
 
-        //Send Data
+        //Send Data - Asynchonous
         producer.send(record);
+        producer.flush();
+        producer.close();
     }
 }
