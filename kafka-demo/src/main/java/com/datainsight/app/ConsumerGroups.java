@@ -13,13 +13,13 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Consumer {
+public class ConsumerGroups {
     public static void main(String[] args) {
 
         Logger logger = LoggerFactory.getLogger(Consumer.class.getName());
 
         String bootstrapServers = "0.0.0.0:9092";
-        String groupId = "my-fourth-application";
+        String groupId = "my-fifth-application";
         String topic = "first_topic";
 
         Properties properties = new Properties();
