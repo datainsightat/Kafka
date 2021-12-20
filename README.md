@@ -15,3 +15,7 @@ Upfate pm.xml (Plugins exec-maven-plugin)
     $ cd kafka-demo
     $ mvn package
     $ mvn exec:java
+
+## Create Maven submodule
+
+    $ mvn archetype:generate -DgroupId=com.datainsight.kafka-demo  -DartifactId=twitter
