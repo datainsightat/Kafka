@@ -42,4 +42,8 @@ Adapt etc/quickstart-hdfs.properties
 
 Run connector
 
-    $ $KAFKA_HOME/bin/connect-standalone.sh $KAFKA_HOME/config/connect-standalone.properties etc/quickstart-hdfs.properties
+    $ $KAFKA_HOME/bin/connect-standalone.sh $KAFKA_HOME/config/connect-standalone.properties /opt/connectors/confluentinc-kafka-connect-hdfs-10.1.3/etc/quickstart-hdfs.properties
+
+## Check Kafka Cluster
+
+    $ zookeeper-shell.sh 0.0.0.0:2181 ls /brokers/ids
