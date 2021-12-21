@@ -1,6 +1,8 @@
 # Kafka
 
-# Setup Java Project
+# Create own Modules
+
+## Setup Java Project
 
     $ mvn archetype:generate -DgroupId=com.datainsight.app -DartifactId=kafka-demo -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
 
@@ -20,8 +22,24 @@ Upfate pm.xml (Plugins exec-maven-plugin)
 
     $ mvn archetype:generate -DgroupId=com.datainsight.kafka-demo  -DartifactId=twitter
 
-## Kafka Connectors
+# Kafka Connectors
 
 https://www.confluent.io/product/connectors/
 
-[hdfs](https://www.confluent.io/hub/confluentinc/kafka-connect-hdfs)
+## HDFS Sink Connector
+
+Donwload [hdfs connector](https://www.confluent.io/hub/confluentinc/kafka-connect-hdfs) and extract it to /opt/connectors/
+
+Adapt etc/quickstart-hdfs.properties
+
+    name=hdfs-sink
+    connector.class=io.confluent.connect.hdfs.HdfsSinkConnector
+    tasks.max=1
+    topics=twitter_tweets
+    #hdfs.url=hdfs://localhost:9000
+    hdfs.url=hdfs://hive:54310
+    flush.size=3
+
+Run connector
+
+    $ $KAFKA_HOME/bin/connect-standalone.sh $KAFKA_HOME/config/connect-standalone.properties etc/quickstart-hdfs.properties
