@@ -19,3 +19,9 @@ Upfate pm.xml (Plugins exec-maven-plugin)
 ## Create Maven submodule
 
     $ mvn archetype:generate -DgroupId=com.datainsight.kafka-demo  -DartifactId=twitter
+
+## Kafka Connectors
+
+https://www.confluent.io/product/connectors/
+
+[hdfs](https://www.confluent.io/hub/confluentinc/kafka-connect-hdfs)

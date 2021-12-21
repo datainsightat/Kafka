@@ -30,14 +30,26 @@ public class TwitterProducer {
 
     Logger logger = LoggerFactory.getLogger(TwitterProducer.class.getName());
 
+    String consumerKey = System.getenv("TWITTER_API_TOKEN");
+    String consumerSecret = System.getenv("TWITTER_API_SECRET");
+    String token = System.getenv("TWITTER_USER_TOKEN");
+    String secret = System.getenv("TWITTER_USER_SECRET");
+
     public TwitterProducer(){
 
     }
     public static void main(String[] args) {
+
         new TwitterProducer().run();
     }
 
     public void run() {
+
+        // Check, if environment variables where set
+        if (consumerKey == null || consumerSecret == null || token==null || secret==null) {
+            System.out.println("\nPlease set environment variables TWITTER_API_TOKEN, TWITTER_API_SECRET, TWITTER_USER_TOKEN and TWITTER_USER_SECRET");
+            System.exit(0);
+        }
 
         /** Set up your blocking queues: Be sure to size these properly based on expected TPS of your stream */
         BlockingQueue<String> msgQueue = new LinkedBlockingQueue<String>(1000);
@@ -76,11 +88,6 @@ public class TwitterProducer {
         }
         logger.info("\nEnd of application ...");
     }
-
-    String consumerKey = System.getenv("TWITTER_API_TOKEN");
-    String consumerSecret = System.getenv("TWITTER_API_SECRET");
-    String token = System.getenv("TWITTER_USER_TOKEN");
-    String secret = System.getenv("TWITTER_USER_SECRET");
 
     public Client createTwitterClient(BlockingQueue<String> msgQueue) {
 
