@@ -28,6 +28,8 @@ https://www.confluent.io/product/connectors/
 
 ## HDFS Sink Connector
 
+[Documentation](https://docs.confluent.io/kafka-connect-hdfs/current/overview.html)
+
 Donwload [hdfs connector](https://www.confluent.io/hub/confluentinc/kafka-connect-hdfs) and extract it to /opt/connectors/
 
 Adapt etc/quickstart-hdfs.properties

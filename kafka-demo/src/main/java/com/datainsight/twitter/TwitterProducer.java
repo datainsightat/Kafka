@@ -114,7 +114,7 @@ public class TwitterProducer {
 
         Client hosebirdClient = builder.build();
         return hosebirdClient;
-    }
+    }1
 
     public KafkaProducer<String,String> createKafkaProducer(){
 
